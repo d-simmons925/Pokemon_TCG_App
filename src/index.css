@@ -11,3 +11,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#searchContainer{
+  margin: 100px 20em;
+}
+
+#searchBox{
+  width: 500px;
+}
+
+#searchButton{
+  margin-left: 10px;
+}
+
+.form-group{
+  display: flex;
+  justify-content: center;
+}
+
+.card-container{
+  display: flex;
+}
+
+.info-container{
+  margin-left: 25px;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+img{
+  width: 196px;
+  height: 273.6px;
+}
+
+h4{
+  margin-top: 20px;
+}
