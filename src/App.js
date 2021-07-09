@@ -85,7 +85,7 @@ function App() {
 
   return (
     <div className="App">
-      <div id="searchContainer">
+      <Container style={{marginTop: '100px', marginBottom: '50px'}}>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Input
@@ -142,9 +142,9 @@ function App() {
             </div>
           </Collapse>
         </Form>
-      </div>
+      </Container>
 
-      <Container>
+      <Container className="p-0" fluid="md">
         {cardsArray.map((card, index)=>
           <Card
             cardInfo={card}
