@@ -1,20 +1,21 @@
-
 const Card = ({cardInfo, color}) => {
   return (
     <div style={{marginBottom: "20px", backgroundImage: color}}>
       <div className="card-container">
-        <img src={cardInfo.images.small} alt="pokemon card"/>
+        <img src={cardInfo.images.small} alt={cardInfo.name}/>
         <div className="info-container">
           <h1>{cardInfo.name}</h1>
-          <h4>set: {cardInfo.set.name}</h4>
+          <hr />
+          <h5>artist: {cardInfo.artist}</h5>
+          <h5>set: {cardInfo.set.name}</h5>
           {cardInfo.tcgplayer && cardInfo.tcgplayer.prices.normal ? 
-            <h4>normal: ${cardInfo.tcgplayer.prices.normal.market}</h4>
+            <h5>normal: ${cardInfo.tcgplayer.prices.normal.mid}</h5>
             : ''}
           {cardInfo.tcgplayer && cardInfo.tcgplayer.prices.holofoil ? 
-            <h4>holofoil: ${cardInfo.tcgplayer.prices.holofoil.market}</h4>
+            <h5>holofoil: ${cardInfo.tcgplayer.prices.holofoil.mid}</h5>
             : ''}
           {cardInfo.tcgplayer && cardInfo.tcgplayer.prices.reverseHolofoil ? 
-            <h4>reverse holofoil price: ${cardInfo.tcgplayer.prices.reverseHolofoil.market}</h4>
+            <h5>reverse holofoil price: ${cardInfo.tcgplayer.prices.reverseHolofoil.mid}</h5>
             : ''}
         </div>
       </div>
