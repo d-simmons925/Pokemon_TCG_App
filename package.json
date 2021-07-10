@@ -39,5 +39,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "App that allows users to search for pokemon cards and display data forn those cards using a Pokemon TCG API",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-simmons925/pokemon_search_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d-simmons925/pokemon_search_app/issues"
+  },
+  "homepage": "https://github.com/d-simmons925/pokemon_search_app#readme"
 }
