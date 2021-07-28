@@ -8,6 +8,8 @@ import {
   Input,
   Label,
   Collapse,
+  Row,
+  Col,
 } from "reactstrap";
 import Card from "./components/Card";
 
@@ -34,45 +36,45 @@ function App() {
   const setCardColor = (rarity) => {
     switch (rarity) {
       case "Common":
-        return "linear-gradient(to right, rgba(160, 160, 160, .8) , rgba(160, 160, 160, 0))";
+        return "rgba(160, 160, 160, .8)";
       case "Uncommon":
-        return "linear-gradient(to right, rgba(0, 255, 0, .8) , rgba(0, 255, 0, 0))";
+        return "rgba(0, 255, 0, .8)";
       case "Promo":
-        return "linear-gradient(to right, rgba(255, 0, 0, .8) , rgba(255, 0, 0, 0))";
+        return "rgba(255, 0, 0, .8)";
       case "Rare":
-        return "linear-gradient(to right, rgba(0, 0, 255, .8) , rgba(0, 0, 255, 0))";
+        return "rgba(0, 0, 255, .8)";
       case "Rare Holo":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Holo EX":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Holo GX":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Holo LV.X":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Holo Star":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Holo V":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Holo VMAX":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Prime":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Prism Star":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       case "Rare Rainbow":
-        return "linear-gradient(to right, rgba(255, 0, 0, .8), rgba(255, 105, 0, .7), rgba(255, 240, 0, .6), rgba(0, 255, 0, .6), rgba(0, 0, 255, .4), rgba(255, 0, 255, .2) , rgba(255, 0, 0, 0))";
+        return "linear-gradient(60deg, rgba(255, 0, 0, 1), rgba(255, 105, 0, 1), rgba(255, 240, 0, 1), rgba(0, 255, 0, 1), rgba(0, 0, 255, 1), rgba(255, 0, 255, 1))";
       case "Rare Secret":
-        return "linear-gradient(to right, rgba(241, 200, 0, .8) , rgba(241, 0, 200, 0))";
+        return "rgba(241, 200, 0, .8)";
       case "Rare Shining":
-        return "linear-gradient(to right, rgba(250, 105, 205, .8) , rgba(250, 105, 205, 0))";
+        return "rgba(250, 105, 205, .8)";
       case "Rare Shiny":
-        return "linear-gradient(to right, rgba(250, 105, 205, .8) , rgba(250, 105, 205, 0))";
+        return "rgba(250, 105, 205, .8)";
       case "Rare Shiny GX":
-        return "linear-gradient(to right, rgba(250, 105, 205, .8) , rgba(250, 105, 205, 0))";
+        return "rgba(250, 105, 205, .8)";
       case "Rare Ultra":
-        return "linear-gradient(to right, rgba(120, 0, 255, .8) , rgba(120, 0, 255, 0))";
+        return "rgba(120, 0, 255, .8)";
       default:
-        return "linear-gradient(to right, rgba(255, 0, 0, .8) , rgba(255, 0, 0, 0))";
+        return "rgba(255, 0, 0, .8)";
     }
   };
 
@@ -80,6 +82,7 @@ function App() {
     e.preventDefault();
     axios.get(`https://api.pokemontcg.io/v2/cards`, config).then((res) => {
       setCardsArray(res.data.data);
+      console.log(cardsArray);
     });
   };
 
@@ -152,10 +155,18 @@ function App() {
         </Form>
       </Container>
 
-      <Container className="p-0" fluid="md">
-        {cardsArray.map((card, index) => (
-          <Card cardInfo={card} color={setCardColor(card.rarity)} key={index} />
-        ))}
+      <Container className="m-auto">
+        <Row>
+          {cardsArray.map((card, index) => (
+            <Col sm="12" md="6" lg="4" xl="3" key={index}>
+              <Card
+                cardInfo={card}
+                color={setCardColor(card.rarity)}
+                key={index}
+              />
+            </Col>
+          ))}
+        </Row>
       </Container>
     </div>
   );
