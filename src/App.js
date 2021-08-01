@@ -1,3 +1,4 @@
+import "./app.css";
 import { useState } from "react";
 import axios from "axios";
 import {
@@ -11,7 +12,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import Card from "./components/Card";
+import Card from "./components/Card/Card";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState();
@@ -36,45 +37,45 @@ function App() {
   const setCardColor = (rarity) => {
     switch (rarity) {
       case "Common":
-        return "rgba(160, 160, 160, .8)";
+        return "rgba(160, 160, 160, 1)";
       case "Uncommon":
-        return "rgba(0, 255, 0, .8)";
+        return "rgba(0, 255, 0, 1)";
       case "Promo":
-        return "rgba(255, 0, 0, .8)";
+        return "rgba(255, 0, 0, 1)";
       case "Rare":
-        return "rgba(0, 0, 255, .8)";
+        return "rgba(0, 0, 255, 1)";
       case "Rare Holo":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Holo EX":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Holo GX":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Holo LV.X":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Holo Star":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Holo V":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Holo VMAX":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Prime":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Prism Star":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       case "Rare Rainbow":
         return "linear-gradient(60deg, rgba(255, 0, 0, 1), rgba(255, 105, 0, 1), rgba(255, 240, 0, 1), rgba(0, 255, 0, 1), rgba(0, 0, 255, 1), rgba(255, 0, 255, 1))";
       case "Rare Secret":
-        return "rgba(241, 200, 0, .8)";
+        return "rgba(241, 200, 0, 1)";
       case "Rare Shining":
-        return "rgba(250, 105, 205, .8)";
+        return "rgba(250, 105, 205, 1)";
       case "Rare Shiny":
-        return "rgba(250, 105, 205, .8)";
+        return "rgba(250, 105, 205, 1)";
       case "Rare Shiny GX":
-        return "rgba(250, 105, 205, .8)";
+        return "rgba(250, 105, 205, 1)";
       case "Rare Ultra":
-        return "rgba(120, 0, 255, .8)";
+        return "rgba(120, 0, 255, 1)";
       default:
-        return "rgba(255, 0, 0, .8)";
+        return "rgba(255, 0, 0, 1)";
     }
   };
 
@@ -82,7 +83,6 @@ function App() {
     e.preventDefault();
     axios.get(`https://api.pokemontcg.io/v2/cards`, config).then((res) => {
       setCardsArray(res.data.data);
-      console.log(cardsArray);
     });
   };
 

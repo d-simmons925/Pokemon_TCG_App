@@ -1,0 +1,56 @@
+.type-img {
+  height: 30px;
+  width: 30px;
+  margin: 4px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.types-container {
+  display: flex;
+}
+
+.weakness-container,
+.resistance-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.weakness,
+.resistance {
+  display: flex;
+}
+
+.weakness-container,
+.resistance-container h4 {
+  color: #b9e6ff;
+}
+
+.retreat {
+  display: flex;
+}
+
+.weakness-value,
+.resistance-value {
+  color: white !important;
+}
+
+.retreat h4 {
+  color: #b9e6ff;
+}
+
+.abiliy-container h4 {
+  color: #b9e6ff;
+}
+
+.rule {
+  font-size: 18px;
+}
+
+h2 span {
+  color: white;
+}
