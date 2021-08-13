@@ -1,0 +1,59 @@
+#searchBox {
+  width: 500px;
+}
+
+#searchBy {
+  width: 100px;
+}
+
+#supertype {
+  width: 100px;
+}
+
+#pokemonType {
+  width: 100px;
+}
+
+#searchButton {
+  margin-left: 10px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+label {
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+  label {
+    font-size: 14px;
+  }
+
+  #searchBy {
+    font-size: 14px;
+    height: 30px;
+  }
+  #supertype {
+    font-size: 14px;
+    height: 30px;
+  }
+  #pokemonType {
+    font-size: 14px;
+    height: 30px;
+  }
+
+  .form-container {
+    display: block;
+  }
+}

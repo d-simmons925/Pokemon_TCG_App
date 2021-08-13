@@ -1,0 +1,19 @@
+.cost-image {
+  height: 30px;
+  width: 30px;
+  margin: 4px;
+}
+
+.attack-title {
+  display: flex;
+  justify-content: space-between;
+  color: #b9e6ff;
+}
+
+.attack {
+  margin-bottom: 20px;
+}
+
+.damage {
+  color: white;
+}
