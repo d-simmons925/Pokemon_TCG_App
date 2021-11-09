@@ -1,25 +1,56 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import './app.css'
 import axios from 'axios'
-import {
-  Container,
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Collapse,
-  Row,
-  Col,
-} from 'reactstrap'
+import { Container, Button, Form, FormGroup, Input, Label, Collapse, Row, Col } from 'reactstrap'
 import Card from './components/Card/Card'
 
+interface PriceI {
+  high: number
+  low: number
+  market: number
+  mid: number
+}
+
+interface CardI {
+  rarity: string
+  artist: string
+  set: {
+    name: string
+    series: string
+  }
+  evolvesFrom: string
+  supertype: string
+  types: []
+  abilities: []
+  hp: string
+  attacks: []
+  weaknesses: []
+  resistances: []
+  retreatCost: []
+  subtypes: []
+  rules: []
+  tcgplayer: {
+    prices: {
+      ['1stEditionNormal']: PriceI
+      ['1stEditionHolofoil']: PriceI
+      normal: PriceI
+      holofoil: PriceI
+      reverseHolofoil: PriceI
+    }
+  }
+  name: string
+  images: {
+    small: string
+    large: string
+  }
+}
+
 function App() {
-  const [searchTerm, setSearchTerm] = useState()
+  const [searchTerm, setSearchTerm] = useState<string>()
   const [searchBy, setSearchBy] = useState('name')
   const [collapse, setCollapse] = useState(false)
-  const [supertype, setSupertype] = useState()
-  const [pokemonType, setPokemonType] = useState()
+  const [supertype, setSupertype] = useState<string>()
+  const [pokemonType, setPokemonType] = useState<string>()
   const [cardsArray, setCardsArray] = useState([])
 
   const toggle = () => setCollapse(!collapse)
@@ -28,9 +59,7 @@ function App() {
     params: {
       q: `${searchBy}:"${searchTerm}"
           ${supertype && supertype !== 'all' ? ` supertype:${supertype}` : ''}
-          ${
-            pokemonType && pokemonType !== 'all' ? ` types:${pokemonType}` : ''
-          }`,
+          ${pokemonType && pokemonType !== 'all' ? ` types:${pokemonType}` : ''}`,
     },
   }
 
@@ -79,10 +108,11 @@ function App() {
     }
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    axios.get(`https://api.pokemontcg.io/v2/cards`, config).then((res) => {
+    axios.get(`https://api.pokemontcg.io/v2/cards`, config).then(res => {
       setCardsArray(res.data.data)
+      console.log(cardsArray)
     })
   }
 
@@ -91,17 +121,8 @@ function App() {
       <Container style={{ marginTop: '100px', marginBottom: '50px' }}>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
-            <Input
-              type="text"
-              id="searchBox"
-              placeholder="search"
-              onChange={(e: any) => setSearchTerm(e.target.value)}
-            ></Input>
-            <Button
-              color="secondary"
-              onClick={toggle}
-              style={{ marginLeft: '10px' }}
-            >
+            <Input type="text" id="searchBox" placeholder="search" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}></Input>
+            <Button color="secondary" onClick={toggle} style={{ marginLeft: '10px' }}>
               Filters
             </Button>
             <Button color="primary" id="searchButton">
@@ -111,32 +132,20 @@ function App() {
           <Collapse isOpen={collapse} style={{ marginTop: '1rem' }}>
             <div className="form-container">
               <Label for="searchBy">search by</Label>
-              <Input
-                type="select"
-                id="searchBy"
-                onChange={(e) => setSearchBy(e.target.value)}
-              >
+              <Input type="select" id="searchBy" onChange={e => setSearchBy(e.target.value)}>
                 <option value="name">name</option>
                 <option value="set.name">set</option>
                 <option value="rarity">rarity</option>
               </Input>
               <Label for="supertype">Category</Label>
-              <Input
-                type="select"
-                id="supertype"
-                onChange={(e: any) => setSupertype(e.target.value)}
-              >
+              <Input type="select" id="supertype" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSupertype(e.target.value)}>
                 <option value="all">all</option>
                 <option value="Pokémon">Pokémon</option>
                 <option value="Trainer">trainer</option>
                 <option value="Energy">Energy</option>
               </Input>
               <Label for="pokemonType">Pokémon Type</Label>
-              <Input
-                type="select"
-                id="pokemonType"
-                onChange={(e: any) => setPokemonType(e.target.value)}
-              >
+              <Input type="select" id="pokemonType" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPokemonType(e.target.value)}>
                 <option value="all">all</option>
                 <option value="colorless">colorless</option>
                 <option value="darkness">darkness</option>
@@ -157,13 +166,9 @@ function App() {
 
       <Container className="m-auto">
         <Row>
-          {cardsArray.map((card: any, index: number) => (
+          {cardsArray.map((card: CardI, index: number) => (
             <Col sm="12" md="6" lg="4" xl="3" key={index}>
-              <Card
-                cardInfo={card}
-                color={setCardColor(card.rarity)}
-                key={index}
-              />
+              <Card cardInfo={card} color={setCardColor(card.rarity)} key={index} />
             </Col>
           ))}
         </Row>

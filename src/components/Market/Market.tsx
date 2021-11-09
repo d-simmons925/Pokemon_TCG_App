@@ -1,20 +1,37 @@
 import './market.css'
 import { Container } from 'reactstrap'
 
-const Market = ({ data }: { data: any }) => {
+interface PriceI {
+  high: number
+  low: number
+  market: number
+  mid: number
+}
+
+interface DataI {
+  tcgplayer: {
+    prices: {
+      ['1stEditionNormal']: PriceI
+      ['1stEditionHolofoil']: PriceI
+      normal: PriceI
+      holofoil: PriceI
+      reverseHolofoil: PriceI
+    }
+  }
+}
+
+const Market = ({ data }: { data: DataI }) => {
   return (
     <div>
       <Container className="p-4">
         <p>
-          *prices based on data from{' '}
-          <a href="https://www.tcgplayer.com/">https://www.tcgplayer.com/</a>
+          *prices based on data from <a href="https://www.tcgplayer.com/">https://www.tcgplayer.com/</a>
         </p>
         {data.tcgplayer && data.tcgplayer.prices['1stEditionNormal'] && (
           <div className="price-container">
             <h2>1st Edition Normal</h2>
             <h3>
-              Estimated Market Value: $
-              <span>{data.tcgplayer.prices['1stEditionNormal'].market}</span>
+              Estimated Market Value: $<span>{data.tcgplayer.prices['1stEditionNormal'].market}</span>
             </h3>
             <ul>
               <li>High: ${data.tcgplayer.prices['1stEditionNormal'].high}</li>
@@ -27,8 +44,7 @@ const Market = ({ data }: { data: any }) => {
           <div className="price-container">
             <h2>1st Edition Holo</h2>
             <h3>
-              Estimated Market Value: $
-              <span>{data.tcgplayer.prices['1stEditionHolofoil'].market}</span>
+              Estimated Market Value: $<span>{data.tcgplayer.prices['1stEditionHolofoil'].market}</span>
             </h3>
             <ul>
               <li>High: ${data.tcgplayer.prices['1stEditionHolofoil'].high}</li>

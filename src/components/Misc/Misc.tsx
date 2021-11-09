@@ -1,7 +1,16 @@
 import './misc.css'
 import { Container } from 'reactstrap'
 
-const Misc = ({ data }: { data: any }) => {
+interface DataI {
+  artist: string
+  set: {
+    name: string
+    series: string
+  }
+  evolvesFrom: string
+}
+
+const Misc = ({ data }: { data: DataI }) => {
   return (
     <div>
       <Container className="p-4">
