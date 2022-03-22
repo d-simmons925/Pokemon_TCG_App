@@ -57,7 +57,11 @@ const Card = ({ cardInfo, color }: { cardInfo: CardInfoI; color: string }) => {
   const misc = (
     <Fragment>
       <Nav>
-        <NavLink href="#" className="nav-selected" onClick={() => setNav('misc')}>
+        <NavLink
+          href="#"
+          className="nav-selected"
+          onClick={() => setNav('misc')}
+        >
           Misc.
         </NavLink>
         <NavLink href="#" onClick={() => setNav('market')}>
@@ -77,7 +81,11 @@ const Card = ({ cardInfo, color }: { cardInfo: CardInfoI; color: string }) => {
         <NavLink href="#" onClick={() => setNav('misc')}>
           Misc.
         </NavLink>
-        <NavLink href="#" className="nav-selected" onClick={() => setNav('market')}>
+        <NavLink
+          href="#"
+          className="nav-selected"
+          onClick={() => setNav('market')}
+        >
           Market
         </NavLink>
         <NavLink href="#" onClick={() => setNav('game')}>
@@ -97,7 +105,11 @@ const Card = ({ cardInfo, color }: { cardInfo: CardInfoI; color: string }) => {
         <NavLink href="#" onClick={() => setNav('market')}>
           Market
         </NavLink>
-        <NavLink href="#" className="nav-selected" onClick={() => setNav('game')}>
+        <NavLink
+          href="#"
+          className="nav-selected"
+          onClick={() => setNav('game')}
+        >
           Game
         </NavLink>
       </Nav>
@@ -107,8 +119,16 @@ const Card = ({ cardInfo, color }: { cardInfo: CardInfoI; color: string }) => {
 
   return (
     <div style={{ marginBottom: '20px' }}>
-      <div className="card-container" style={{ background: color }} onClick={handleToggle}>
-        <img src={cardInfo.images.small} alt={cardInfo.name} className="card-img" />
+      <div
+        className="card-container"
+        style={{ background: color }}
+        onClick={handleToggle}
+      >
+        <img
+          src={cardInfo.images.small}
+          alt={cardInfo.name}
+          className="card-img"
+        />
       </div>
       <Modal isOpen={modal} toggle={handleToggle}>
         <ModalHeader toggle={handleToggle} style={{ background: color }}>

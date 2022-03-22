@@ -13,7 +13,7 @@ import {
   Col,
 } from 'reactstrap'
 import PageNav from './components/PageNav/PageNav'
-const Card = lazy(()=> import('./components/Card/Card'))
+const Card = lazy(() => import('./components/Card/Card'))
 
 interface PriceI {
   high: number
@@ -70,7 +70,7 @@ function App() {
   const toggle = () => setCollapse(!collapse)
 
   const cardPlaceholders = []
-  for(let i = 0; i < 20; i++){
+  for (let i = 0; i < 16; i++) {
     cardPlaceholders.push(i)
   }
 
@@ -132,6 +132,7 @@ function App() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    console.log(config)
     axios.get(`https://api.pokemontcg.io/v2/cards`, config).then(res => {
       setCardsArray(res.data.data)
       setLoading(false)
@@ -139,7 +140,7 @@ function App() {
   }
 
   useEffect(() => {
-    setPage(cardsArray.slice(20 * pageIndex, (pageIndex + 1) * 20))
+    setPage(cardsArray.slice(16 * pageIndex, (pageIndex + 1) * 16))
   }, [cardsArray, pageIndex])
 
   return (
@@ -160,7 +161,7 @@ function App() {
               onClick={toggle}
               style={{ marginLeft: '10px' }}
             >
-              Filters
+              <i className="fas fa-gear"></i>
             </Button>
             <Button color="primary" id="searchButton">
               Search
@@ -218,15 +219,19 @@ function App() {
       </Container>
 
       <Container className="m-auto">
-      {cardsArray.length > 20 && (
-          <PageNav setPage={setPageIndex} pageIndex={pageIndex} pagesNum={Math.ceil(cardsArray.length / 20)}/>
+        {cardsArray.length > 16 && (
+          <PageNav
+            setPage={setPageIndex}
+            pageIndex={pageIndex}
+            pagesNum={Math.ceil(cardsArray.length / 16)}
+          />
         )}
         {loading ? (
           <Row>
-            {cardPlaceholders.map((placeholder : number) =>(
-            <Col sm="12" md="6" lg="4" xl="3">
-              <div className="placeholder"></div>
-            </Col>
+            {cardPlaceholders.map((placeholder: number) => (
+              <Col sm="12" md="6" lg="4" xl="3">
+                <div className="placeholder"></div>
+              </Col>
             ))}
           </Row>
         ) : (
@@ -244,8 +249,12 @@ function App() {
             ))}
           </Row>
         )}
-        {cardsArray.length > 20 && (
-          <PageNav setPage={setPageIndex} pageIndex={pageIndex} pagesNum={Math.ceil(cardsArray.length / 20)}/>
+        {cardsArray.length > 16 && (
+          <PageNav
+            setPage={setPageIndex}
+            pageIndex={pageIndex}
+            pagesNum={Math.ceil(cardsArray.length / 16)}
+          />
         )}
       </Container>
     </div>
